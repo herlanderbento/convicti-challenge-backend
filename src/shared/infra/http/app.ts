@@ -7,6 +7,7 @@ import { router } from './routes';
 import '@shared/container';
 
 import { connection } from '@shared/infra/typeorm/typeorm.config';
+import { customError } from '@shared/errors/customError';
 
 const app = express();
 
@@ -22,5 +23,7 @@ connection
   });
 
 app.use(router);
+
+app.use(customError);
 
 export { app };
