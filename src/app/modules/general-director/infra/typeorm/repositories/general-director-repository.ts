@@ -26,4 +26,8 @@ export class GeneralDirectorRepository
 
     await this.repository.save(generalDirector);
   }
+
+  async findByEmail(email: string): Promise<GeneralDirector> {
+    return await this.repository.findOneBy({ email });
+  }
 }
