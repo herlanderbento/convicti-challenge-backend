@@ -1,7 +1,12 @@
 import 'reflect-metadata';
 import express from 'express';
 import 'express-async-errors';
-import { connection } from '../typeorm/ormconfig';
+
+import { router } from './routes';
+
+import '@shared/container';
+
+import { connection } from '@shared/infra/typeorm/typeorm.config';
 
 const app = express();
 
@@ -15,5 +20,7 @@ connection
   .catch((err) => {
     console.error('Error during Data Source initialization', err);
   });
+
+app.use(router);
 
 export { app };

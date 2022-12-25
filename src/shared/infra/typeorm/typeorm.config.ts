@@ -1,4 +1,7 @@
 import { DataSource } from 'typeorm';
+import { config } from 'dotenv';
+
+config();
 
 export const connection = new DataSource({
   type: 'mysql',
@@ -9,6 +12,6 @@ export const connection = new DataSource({
   database: process.env.MYSQL_DB,
   synchronize: true,
   migrationsRun: false,
-  entities: [],
-  migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
+  entities: [`./src/app/modules/**/infra/typeorm/entities/*.{ts,js}`],
+  migrations: [`./src/shared/infra/typeorm/migrations/*.ts`],
 });

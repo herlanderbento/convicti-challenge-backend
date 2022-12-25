@@ -5,19 +5,32 @@
     "rootDir": "./",
     "baseUrl": "./src",
     "outDir": "./dist",
-    "typeRoots": ["./src/app/@types", "./node_modules/@types"],    
+    "typeRoots": [
+      "./src/app/@types",
+      "./node_modules/@types"
+    ],
     "paths": {
-      "@app/*": ["app/*"],
-      "@config/*": ["config/*"],
-      "@shared/*": ["shared/*"],
-      "@docs/*": ["documentation/*"]
-
+      "@app/*": [
+        "app/*"
+      ],
+      "@config/*": [
+        "app/config/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ],
+      "@docs/*": [
+        "documentation/*"
+      ]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "lib": ["es2018", "esnext.asynciterable"],
+    "lib": [
+      "es2018",
+      "esnext.asynciterable"
+    ],
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   }
