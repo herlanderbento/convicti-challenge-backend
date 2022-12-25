@@ -23,7 +23,6 @@ connection
   });
 
 app.use(router);
-
 app.use(customError);
 
 export { app };

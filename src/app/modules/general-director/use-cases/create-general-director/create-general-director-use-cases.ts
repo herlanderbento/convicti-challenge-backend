@@ -1,5 +1,6 @@
 import { createSchemaValidate } from '@app/modules/validation';
 import { AppError } from '@shared/errors/AppError';
+import { hash } from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
 import { CreateGeneralDirectorDtos } from '../../dtos/create-general-director.dtos';
 import { GeneralDirectorRepositoryInterface } from '../../repositories/general-director-repository-interface';
@@ -27,10 +28,12 @@ export class CreateGeneralDirectorUseCases {
       throw new AppError('General already exists!');
     }
 
+    const passwordHash = await hash(password, 8);
+
     await this.generalDirectorRepository.create({
       name,
       email,
-      password,
+      password: passwordHash,
     });
   }
 }
