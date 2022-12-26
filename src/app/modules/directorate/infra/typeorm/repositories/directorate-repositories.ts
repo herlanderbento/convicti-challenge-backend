@@ -28,4 +28,12 @@ export class DirectorateRepository implements DirectorateRepositoryInterface {
   async findByUserId(user_id: string): Promise<Directorate> {
     return await this.repository.findOneBy({ user_id });
   }
+
+  async find(): Promise<Directorate[]> {
+    const directorateQuery = this.repository
+      .createQueryBuilder('u')
+      .innerJoinAndSelect('u.users', 'tb_users');
+
+    return await directorateQuery.getMany();
+  }
 }
