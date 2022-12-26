@@ -4,18 +4,17 @@ import { CreateGeneralDirectorUseCases } from './create-general-director-use-cas
 
 export class CreateGeneralDirectorController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, email, password } = request.body;
+    const { user_id, name } = request.body;
 
     const createGeneralDirectorUseCases = container.resolve(
       CreateGeneralDirectorUseCases
     );
 
-    await createGeneralDirectorUseCases.execute({
+    const generalDirectorInfo = await createGeneralDirectorUseCases.execute({
+      user_id,
       name,
-      email,
-      password,
     });
 
-    return response.status(200).json({ message: 'Created' });
+    return response.status(200).json(generalDirectorInfo);
   }
 }

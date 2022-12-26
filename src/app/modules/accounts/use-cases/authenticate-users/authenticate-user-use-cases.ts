@@ -45,6 +45,7 @@ export class AuthenticateUserUseCases {
     return {
       token,
       user: {
+        id: user.id,
         email: user.email,
       },
     };

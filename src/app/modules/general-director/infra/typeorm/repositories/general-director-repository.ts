@@ -15,19 +15,17 @@ export class GeneralDirectorRepository
 
   async create({
     name,
-    email,
-    password,
-  }: CreateGeneralDirectorDtos): Promise<void> {
-    const generalDirector = this.repository.create({
+    user_id,
+  }: CreateGeneralDirectorDtos): Promise<GeneralDirector> {
+    const create = this.repository.create({
       name,
-      email,
-      password,
+      user_id,
     });
 
-    await this.repository.save(generalDirector);
+    return await this.repository.save(create);
   }
 
-  async findByEmail(email: string): Promise<GeneralDirector> {
-    return await this.repository.findOneBy({ email });
+  async findByUserId(user_id: string): Promise<GeneralDirector> {
+    return await this.repository.findOneBy({ user_id });
   }
 }

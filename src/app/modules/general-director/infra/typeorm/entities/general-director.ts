@@ -10,10 +10,7 @@ export class GeneralDirector {
   name: string;
 
   @Column()
-  email: string;
-
-  @Column()
-  password: string;
+  user_id: string;
 
   @CreateDateColumn()
   create_at: Date;

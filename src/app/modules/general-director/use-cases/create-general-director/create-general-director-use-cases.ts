@@ -1,8 +1,9 @@
-import { createSchemaValidate } from '@app/modules/validation';
+import { createSchemaValidate } from '@app/modules/general-director/validation';
 import { AppError } from '@shared/errors/AppError';
 import { hash } from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
 import { CreateGeneralDirectorDtos } from '../../dtos/create-general-director.dtos';
+import { GeneralDirector } from '../../infra/typeorm/entities/general-director';
 import { GeneralDirectorRepositoryInterface } from '../../repositories/general-director-repository-interface';
 
 @injectable()
@@ -13,27 +14,23 @@ export class CreateGeneralDirectorUseCases {
   ) {}
 
   async execute({
+    user_id,
     name,
-    email,
-    password,
-  }: CreateGeneralDirectorDtos): Promise<void> {
-    if (!(await createSchemaValidate.isValid({ name, email, password }))) {
+  }: CreateGeneralDirectorDtos): Promise<GeneralDirector> {
+    if (!(await createSchemaValidate.isValid({ name, user_id }))) {
       throw new AppError('Validation fails');
     }
 
     const generalDirectorExists =
-      await this.generalDirectorRepository.findByEmail(email);
+      await this.generalDirectorRepository.findByUserId(user_id);
 
     if (generalDirectorExists) {
       throw new AppError('General already exists!');
     }
 
-    const passwordHash = await hash(password, 8);
-
-    await this.generalDirectorRepository.create({
+    return await this.generalDirectorRepository.create({
       name,
-      email,
-      password: passwordHash,
+      user_id,
     });
   }
 }
