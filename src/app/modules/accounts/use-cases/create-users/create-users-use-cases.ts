@@ -1,6 +1,7 @@
 import { AppError } from '@shared/errors/AppError';
 import { hash } from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
+import { Users } from '../../infra/typeorm/entities/users';
 import { UsersRepositoryInterface } from '../../repositories/users-repositories-interface';
 import { usersInputSchemaValidate } from '../../validation';
 
@@ -11,7 +12,7 @@ export class CreateUsersUseCases {
     private usersRepository: UsersRepositoryInterface
   ) {}
 
-  async execute({ email, password }): Promise<void> {
+  async execute({ email, password }): Promise<Users> {
     if (!(await usersInputSchemaValidate.isValid({ email, password }))) {
       throw new AppError('Validation fails');
     }
@@ -22,7 +23,7 @@ export class CreateUsersUseCases {
 
     const passwordHash = await hash(password, 8);
 
-    await this.usersRepository.create({
+    return await this.usersRepository.create({
       email,
       password: passwordHash,
     });

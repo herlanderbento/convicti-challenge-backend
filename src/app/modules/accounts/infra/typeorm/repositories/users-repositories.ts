@@ -11,16 +11,20 @@ export class UsersRepository implements UsersRepositoryInterface {
     this.repository = connection.getRepository(Users);
   }
 
-  async create({ email, password }: CreateUsersDtos): Promise<void> {
+  async create({ email, password }: CreateUsersDtos): Promise<Users> {
     const create = this.repository.create({
       email,
       password,
     });
 
-    await this.repository.save(create);
+    return await this.repository.save(create);
   }
 
   async findByEmail(email: string): Promise<Users> {
     return await this.repository.findOneBy({ email });
+  }
+
+  async findById(id: string): Promise<Users> {
+    return await this.repository.findOneBy({ id });
   }
 }

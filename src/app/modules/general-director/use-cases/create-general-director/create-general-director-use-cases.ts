@@ -1,3 +1,4 @@
+import { UsersRepository } from '@app/modules/accounts/infra/typeorm/repositories/users-repositories';
 import { createSchemaValidate } from '@app/modules/general-director/validation';
 import { AppError } from '@shared/errors/AppError';
 import { hash } from 'bcrypt';
@@ -10,7 +11,9 @@ import { GeneralDirectorRepositoryInterface } from '../../repositories/general-d
 export class CreateGeneralDirectorUseCases {
   constructor(
     @inject('GeneralDirectorRepository')
-    private generalDirectorRepository: GeneralDirectorRepositoryInterface
+    private generalDirectorRepository: GeneralDirectorRepositoryInterface,
+    @inject('UsersRepository')
+    private usersRepository: UsersRepository
   ) {}
 
   async execute({
@@ -26,6 +29,12 @@ export class CreateGeneralDirectorUseCases {
 
     if (generalDirectorExists) {
       throw new AppError('General already exists!');
+    }
+
+    const userId = await this.usersRepository.findById(user_id);
+
+    if (!userId) {
+      throw new AppError('User not found!');
     }
 
     return await this.generalDirectorRepository.create({

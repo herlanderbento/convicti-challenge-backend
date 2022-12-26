@@ -8,8 +8,8 @@ export class CreateUsersController {
 
     const createUsersUseCases = container.resolve(CreateUsersUseCases);
 
-    await createUsersUseCases.execute({ email, password });
+    const userInfo = await createUsersUseCases.execute({ email, password });
 
-    return response.status(200).json({ message: 'User created successfully' });
+    return response.status(200).json(userInfo);
   }
 }
