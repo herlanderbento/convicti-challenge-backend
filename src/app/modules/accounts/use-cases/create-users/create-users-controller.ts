@@ -10,6 +10,8 @@ export class CreateUsersController {
 
     const userInfo = await createUsersUseCases.execute({ email, password });
 
+    delete userInfo.password;
+
     return response.status(200).json(userInfo);
   }
 }

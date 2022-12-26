@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class convictMigration1672034406725 implements MigrationInterface {
+export class convictMigration1672038687039 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_general_director',
+        name: 'tb_directorate',
         columns: [
           {
             name: 'id',
@@ -25,6 +25,10 @@ export class convictMigration1672034406725 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'directorate_name',
+            type: 'varchar',
+          },
+          {
             name: 'create_at',
             type: 'timestamp',
             default: 'now()',
@@ -33,10 +37,12 @@ export class convictMigration1672034406725 implements MigrationInterface {
       })
     );
 
+    queryRunner.clearSqlMemory();
+
     await queryRunner.createForeignKey(
-      'tb_general_director',
+      'tb_directorate',
       new TableForeignKey({
-        name: 'FKGeneralDirectorUsers',
+        name: 'FKDirectorateUsers',
         columnNames: ['user_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'tb_users',
@@ -47,11 +53,7 @@ export class convictMigration1672034406725 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey(
-      'tb_general_director',
-      'FKGeneralDirectorUsers'
-    );
-    await queryRunner.dropColumn('tb_general_director', 'user_id');
-    await queryRunner.dropTable('tb_general_director');
+    await queryRunner.dropForeignKey('tb_directorate', 'FKDirectorateUsers');
+    await queryRunner.dropTable('tb_directorate');
   }
 }

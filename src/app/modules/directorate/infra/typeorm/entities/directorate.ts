@@ -9,16 +9,19 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-@Entity('tb_general_director')
-export class GeneralDirector {
+@Entity('tb_directorate')
+export class Directorate {
   @PrimaryColumn()
   id?: string;
+
+  @Column()
+  user_id: string;
 
   @Column()
   name: string;
 
   @Column()
-  user_id: string;
+  directorate_name: string;
 
   @CreateDateColumn()
   create_at: Date;
