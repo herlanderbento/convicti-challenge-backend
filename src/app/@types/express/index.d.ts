@@ -3,5 +3,8 @@ declare namespace Express {
     generalDirector: {
       id?: string;
     };
+    user: {
+      id?: string;
+    };
   }
 }
