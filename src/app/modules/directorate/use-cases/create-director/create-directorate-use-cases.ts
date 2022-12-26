@@ -20,12 +20,14 @@ export class CreateDirectorateUseCases {
     name,
     directorate_name,
     user_id,
+    roles,
   }: CreateDirectorateDtos): Promise<Directorate> {
     if (
       !(await directorateInputSchemaValidate.isValid({
         name,
         directorate_name,
         user_id,
+        roles,
       }))
     ) {
       throw new AppError('Validation fails');
@@ -47,6 +49,7 @@ export class CreateDirectorateUseCases {
       name,
       directorate_name,
       user_id,
+      roles,
     });
   }
 }

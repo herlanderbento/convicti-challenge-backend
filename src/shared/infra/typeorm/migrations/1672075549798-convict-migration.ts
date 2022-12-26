@@ -33,14 +33,6 @@ export class convictMigration1672075549798 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'manager',
-            type: 'varchar',
-          },
-          {
-            name: 'directorate',
-            type: 'varchar',
-          },
-          {
             name: 'create_at',
             type: 'timestamp',
             default: 'now()',

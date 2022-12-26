@@ -29,6 +29,11 @@ export class convictMigration1672038687039 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'roles',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'create_at',
             type: 'timestamp',
             default: 'now()',

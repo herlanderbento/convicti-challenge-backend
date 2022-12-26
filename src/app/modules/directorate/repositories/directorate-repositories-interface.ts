@@ -5,4 +5,5 @@ export interface DirectorateRepositoryInterface {
   create(data: CreateDirectorateDtos): Promise<Directorate>;
   findByUserId(user_id: string): Promise<Directorate>;
   find(): Promise<Directorate[]>;
+  findById(id: string): Promise<Directorate>;
 }

@@ -23,6 +23,9 @@ export class Directorate {
   @Column()
   directorate_name: string;
 
+  @Column()
+  roles: string;
+
   @CreateDateColumn()
   create_at: Date;
 

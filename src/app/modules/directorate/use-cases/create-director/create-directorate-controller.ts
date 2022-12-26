@@ -4,7 +4,7 @@ import { CreateDirectorateUseCases } from './create-directorate-use-cases';
 
 export class CreateDirectorateController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, directorate_name, user_id } = request.body;
+    const { name, directorate_name, user_id, roles } = request.body;
 
     const createDirectorateUseCases = container.resolve(
       CreateDirectorateUseCases
@@ -14,6 +14,7 @@ export class CreateDirectorateController {
       name,
       directorate_name,
       user_id,
+      roles,
     });
 
     return response.status(200).json(directorateInfo);

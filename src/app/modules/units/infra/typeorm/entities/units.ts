@@ -6,7 +6,6 @@ import {
   Entity,
   PrimaryColumn,
   CreateDateColumn,
-  OneToOne,
   JoinColumn,
   ManyToOne,
 } from 'typeorm';
@@ -27,12 +26,6 @@ export class Units {
 
   @Column()
   longitude: string;
-
-  @Column()
-  manager: string;
-
-  @Column()
-  directorate: string;
 
   @CreateDateColumn()
   create_at: Date;

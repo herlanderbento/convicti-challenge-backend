@@ -15,8 +15,14 @@ export class DirectorateRepository implements DirectorateRepositoryInterface {
     name,
     directorate_name,
     user_id,
+    roles,
   }: CreateDirectorateDtos): Promise<Directorate> {
-    const create = this.repository.create({ name, directorate_name, user_id });
+    const create = this.repository.create({
+      name,
+      directorate_name,
+      user_id,
+      roles,
+    });
 
     return await this.repository.save(create);
   }
