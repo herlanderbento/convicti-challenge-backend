@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { Users } from '../../../../accounts/infra/typeorm/entities/users';
+
 import {
   Column,
   Entity,
@@ -7,8 +7,10 @@ import {
   CreateDateColumn,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 import { Units } from '../../../../../modules/units/infra/typeorm/entities/units';
+import { Users } from '../../../../accounts/infra/typeorm/entities/users';
 
 @Entity('tb_salesperson')
 export class Salesperson {
@@ -31,7 +33,7 @@ export class Salesperson {
   @JoinColumn({ name: 'user_id' })
   users: Users;
 
-  @OneToOne(() => Units)
+  @ManyToOne(() => Units)
   @JoinColumn({ name: 'unit_id' })
   units: Units;
 
