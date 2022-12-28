@@ -38,6 +38,10 @@ export class CreateUnitUseCases {
       throw new AppError('Director or manager not found!');
     }
 
+    if (director.roles !== 'manager') {
+      throw new AppError(`User isn't a manager!`);
+    }
+
     const managerAlreadyExists = await this.unitsRepository.findByDirectorateId(
       directorate_id
     );

@@ -35,10 +35,23 @@ export class UnitsRepository implements UnitsRepositoryInterface {
   }
 
   async find(): Promise<Units[]> {
-    const unitsQuery = this.repository
-      .createQueryBuilder('u')
-      .innerJoinAndSelect('u.directorate', 'tb_directorate');
-
-    return await unitsQuery.getMany();
+    return await this.repository.find({
+      select: {
+        directorate: {
+          name: true,
+          roles: true,
+          directorate_name: true,
+          users: {
+            id: true,
+            email: true,
+          },
+        },
+      },
+      relations: {
+        directorate: {
+          users: true,
+        },
+      },
+    });
   }
 }
