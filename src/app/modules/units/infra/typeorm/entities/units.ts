@@ -32,7 +32,7 @@ export class Units {
 
   @ManyToOne(() => Directorate)
   @JoinColumn({ name: 'directorate_id' })
-  Directorate: Directorate;
+  directorate: Directorate;
 
   constructor() {
     if (!this.id) this.id = randomUUID();
