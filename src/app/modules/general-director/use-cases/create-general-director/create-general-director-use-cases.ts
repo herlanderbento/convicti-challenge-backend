@@ -1,7 +1,6 @@
 import { UsersRepository } from '@app/modules/accounts/infra/typeorm/repositories/users-repositories';
 import { createSchemaValidate } from '@app/modules/general-director/validation';
 import { AppError } from '@shared/errors/AppError';
-import { hash } from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
 import { CreateGeneralDirectorDtos } from '../../dtos/create-general-director.dtos';
 import { GeneralDirector } from '../../infra/typeorm/entities/general-director';

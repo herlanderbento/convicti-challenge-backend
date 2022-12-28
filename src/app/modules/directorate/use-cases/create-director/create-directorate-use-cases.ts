@@ -1,7 +1,6 @@
+import { inject, injectable } from 'tsyringe';
 import { UsersRepositoryInterface } from '@app/modules/accounts/repositories/users-repositories-interface';
 import { AppError } from '@shared/errors/AppError';
-import { hash } from 'bcrypt';
-import { inject, injectable } from 'tsyringe';
 import { CreateDirectorateDtos } from '../../dtos/create-directorate-dtos';
 import { Directorate } from '../../infra/typeorm/entities/directorate';
 import { DirectorateRepositoryInterface } from '../../repositories/directorate-repositories-interface';
