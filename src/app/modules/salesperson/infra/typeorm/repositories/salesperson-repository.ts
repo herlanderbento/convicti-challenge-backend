@@ -49,6 +49,20 @@ export class SalespersonRepository implements SalespersonRepositoryInterface {
   }
 
   async find(): Promise<Salesperson[]> {
-    return await this.repository.find({});
+    return await this.repository.find({
+      select: {
+        users: {
+          id: false,
+          email: true,
+        },
+        units: {
+          name: true,
+        },
+      },
+      relations: {
+        users: true,
+        units: true,
+      },
+    });
   }
 }
