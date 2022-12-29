@@ -48,6 +48,8 @@ export class SalespersonRepository implements SalespersonRepositoryInterface {
     return await this.repository.findOneBy({ unit_id });
   }
 
+  async func() {}
+
   async find(): Promise<Salesperson[]> {
     return await this.repository.find({
       select: {
