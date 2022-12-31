@@ -3,7 +3,7 @@ import { Directorate } from '../../infra/typeorm/entities/directorate';
 import { DirectorateRepositoryInterface } from '../../repositories/directorate-repositories-interface';
 
 @injectable()
-export class GetDirectorsUseCases {
+export class GetAllDirectorsUseCases {
   constructor(
     @inject('DirectorateRepository')
     private directorateRepository: DirectorateRepositoryInterface

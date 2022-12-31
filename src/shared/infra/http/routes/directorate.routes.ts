@@ -1,19 +1,19 @@
 import { Router } from 'express';
 import { CreateDirectorateController } from '@app/modules/directorate/use-cases/create-director/create-directorate-controller';
-import { GetDirectorsController } from '@app/modules/directorate/use-cases/get-directors/get-directors-controller';
+import { GetAllDirectorsController } from '@app/modules/directorate/use-cases/get-all-directors/get-all-directors-controller';
 import { ensureAuthenticated } from '../middleware/ensureAuthenticated';
 import { ensureGeneralDirector } from '../middleware/ensureGeneralDirector';
 
 const directorateRouters = Router();
 
 const createDirectorateController = new CreateDirectorateController();
-const getDirectorsController = new GetDirectorsController();
+const getAllDirectorsController = new GetAllDirectorsController();
 
 directorateRouters.get(
   '/',
   ensureAuthenticated,
   ensureGeneralDirector,
-  getDirectorsController.handle
+  getAllDirectorsController.handle
 );
 directorateRouters.post('/', createDirectorateController.handle);
 
