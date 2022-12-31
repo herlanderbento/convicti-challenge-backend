@@ -1,44 +1,39 @@
+import { inject, injectable } from 'tsyringe';
 import { UsersRepository } from '@app/modules/accounts/infra/typeorm/repositories/users-repositories';
 import { createSchemaValidate } from '@app/modules/general-director/validation';
 import { AppError } from '@shared/errors/AppError';
-import { inject, injectable } from 'tsyringe';
 import { CreateGeneralDirectorDtos } from '../../dtos/create-general-director.dtos';
 import { GeneralDirector } from '../../infra/typeorm/entities/general-director';
-import { GeneralDirectorRepositoryInterface } from '../../repositories/general-director-repository-interface';
+import { GeneralDirectorRepository } from '../../infra/typeorm/repositories/general-director-repository';
 
 @injectable()
 export class CreateGeneralDirectorUseCases {
   constructor(
     @inject('GeneralDirectorRepository')
-    private generalDirectorRepository: GeneralDirectorRepositoryInterface,
+    private generalDirectorRepository: GeneralDirectorRepository,
     @inject('UsersRepository')
     private usersRepository: UsersRepository
   ) {}
 
   async execute({
-    user_id,
     name,
+    email,
+    password,
   }: CreateGeneralDirectorDtos): Promise<GeneralDirector> {
-    if (!(await createSchemaValidate.isValid({ name, user_id }))) {
+    if (!(await createSchemaValidate.isValid({ name, email, password }))) {
       throw new AppError('Validation fails');
     }
 
-    const generalDirectorExists =
-      await this.generalDirectorRepository.findByUserId(user_id);
+    const generalDirectorExists = await this.usersRepository.findByEmail(email);
 
     if (generalDirectorExists) {
       throw new AppError('General already exists!');
     }
 
-    const userId = await this.usersRepository.findById(user_id);
-
-    if (!userId) {
-      throw new AppError('User not found!');
-    }
-
     return await this.generalDirectorRepository.create({
       name,
-      user_id,
+      email,
+      password,
     });
   }
 }
