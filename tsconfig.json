@@ -20,7 +20,7 @@
         "shared/*"
       ],
       "@docs/*": [
-        "documentation/*"
+        "docs/*"
       ]
     },
     "esModuleInterop": true,

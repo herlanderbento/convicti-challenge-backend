@@ -18,8 +18,10 @@
     "typeorm:revert-migration": "npm run typeorm -- -d ./src/shared/infra/typeorm/typeorm.config.ts migration:revert"
   },
   "dependencies": {
+    "@redocly/cli": "^1.0.0-beta.118",
     "@types/dotenv-safe": "^8.1.2",
     "@types/jsonwebtoken": "^9.0.0",
+    "@types/swagger-ui-express": "^4.1.3",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
@@ -31,6 +33,7 @@
     "mysql": "^2.18.1",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
+    "swagger-ui-express": "^4.6.0",
     "tsyringe": "^4.7.0",
     "typeorm": "^0.3.11",
     "yup": "^0.32.11"

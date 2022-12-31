@@ -7,7 +7,11 @@ import {
   CreateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
+  JoinTable,
+  ManyToMany,
 } from 'typeorm';
+import { Units } from '@app/modules/units/infra/typeorm/entities/units';
 
 @Entity('tb_directorate')
 export class Directorate {
@@ -32,6 +36,12 @@ export class Directorate {
   @OneToOne(() => Users)
   @JoinColumn({ name: 'user_id' })
   users: Users;
+
+  @OneToMany(() => Units, (Units) => Units.directorate)
+  @JoinTable({
+    joinColumns: [{ name: 'directorate_id' }],
+  })
+  units: Units[];
 
   constructor() {
     if (!this.id) this.id = randomUUID();

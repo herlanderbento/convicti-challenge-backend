@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Convict-challenge documentation for Dev",
+    "description": "API for Magazine Aziul company",
+    "version": "1.0.0",
+    "contact": {
+      "email": "herlanderbento19@gmail.com"
+    }
+  }
+}

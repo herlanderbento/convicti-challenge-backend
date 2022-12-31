@@ -49,7 +49,8 @@ export class DirectorateRepository implements DirectorateRepositoryInterface {
   async find(): Promise<Directorate[]> {
     const directorateQuery = this.repository
       .createQueryBuilder('u')
-      .innerJoinAndSelect('u.users', 'tb_users');
+      .innerJoinAndSelect('u.users', 'tb_users')
+      .leftJoinAndSelect('u.units', 'tb_units');
 
     return await directorateQuery.getMany();
   }
