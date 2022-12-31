@@ -39,7 +39,7 @@ export class Sales {
 
   @OneToOne(() => Salesperson)
   @JoinColumn({ name: 'salesperson_id' })
-  Salesperson: Salesperson;
+  salesperson: Salesperson;
 
   @OneToOne(() => Units)
   @JoinColumn({ name: 'unit_id' })
