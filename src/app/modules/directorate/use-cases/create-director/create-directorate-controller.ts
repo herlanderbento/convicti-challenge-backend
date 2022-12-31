@@ -4,7 +4,7 @@ import { CreateDirectorateUseCases } from './create-directorate-use-cases';
 
 export class CreateDirectorateController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, directorate_name, user_id, roles } = request.body;
+    const { name, directorate_name, roles, email, password } = request.body;
 
     const createDirectorateUseCases = container.resolve(
       CreateDirectorateUseCases
@@ -13,8 +13,9 @@ export class CreateDirectorateController {
     const directorateInfo = await createDirectorateUseCases.execute({
       name,
       directorate_name,
-      user_id,
       roles,
+      email,
+      password,
     });
 
     return response.status(200).json(directorateInfo);

@@ -1,3 +1,4 @@
+import { Users } from '@app/modules/accounts/infra/typeorm/entities/users';
 import { CreateDirectorateDtos } from '@app/modules/directorate/dtos/create-directorate-dtos';
 import { DirectorateRepositoryInterface } from '@app/modules/directorate/repositories/directorate-repositories-interface';
 import { connection } from '@shared/infra/typeorm/typeorm.config';
@@ -6,21 +7,31 @@ import { Directorate } from '../entities/directorate';
 
 export class DirectorateRepository implements DirectorateRepositoryInterface {
   private repository: Repository<Directorate>;
+  private userRepository: Repository<Users>;
 
   constructor() {
     this.repository = connection.getRepository(Directorate);
+    this.userRepository = connection.getRepository(Users);
   }
 
   async create({
     name,
     directorate_name,
-    user_id,
     roles,
+    email,
+    password,
   }: CreateDirectorateDtos): Promise<Directorate> {
+    const createUser = this.userRepository.create({
+      email,
+      password,
+    });
+
+    const getUser = await this.userRepository.save(createUser);
+
     const create = this.repository.create({
       name,
       directorate_name,
-      user_id,
+      user_id: getUser.id,
       roles,
     });
 

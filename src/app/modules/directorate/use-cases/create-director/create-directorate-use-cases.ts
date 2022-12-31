@@ -18,37 +18,34 @@ export class CreateDirectorateUseCases {
   async execute({
     name,
     directorate_name,
-    user_id,
+    email,
     roles,
+    password,
   }: CreateDirectorateDtos): Promise<Directorate> {
     if (
       !(await directorateInputSchemaValidate.isValid({
         name,
         directorate_name,
-        user_id,
+        email,
         roles,
+        password,
       }))
     ) {
       throw new AppError('Validation fails');
     }
 
-    const directorAlreadyExists = await this.directorateRepository.findByUserId(
-      user_id
-    );
+    const usersAlreadyExists = await this.usersRepository.findByEmail(email);
 
-    if (directorAlreadyExists) throw new AppError('Director already exists.');
-
-    const userId = await this.usersRepository.findById(user_id);
-
-    if (!userId) {
-      throw new AppError('User not found!');
+    if (usersAlreadyExists) {
+      throw new AppError('User already exists!');
     }
 
     return await this.directorateRepository.create({
       name,
       directorate_name,
-      user_id,
       roles,
+      email,
+      password,
     });
   }
 }
