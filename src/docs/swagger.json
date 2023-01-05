@@ -157,6 +157,44 @@
           }
         }
       }
+    },
+    "/units": {
+      "post": {
+        "tags": ["Units"],
+        "summary": "Create a unit",
+        "description": "Create a unit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "directorate_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "latitude": {
+                    "type": "string"
+                  },
+                  "longitude": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Unit created successful"
+          },
+          "400": {
+            "description": ""
+          }
+        }
+      }
     }
   }
 }
