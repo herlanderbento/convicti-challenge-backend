@@ -194,6 +194,19 @@
             "description": ""
           }
         }
+      },
+      "get": {
+        "tags": ["Units"],
+        "summary": "list all units",
+        "description": "list all units",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": ""
+          }
+        }
       }
     }
   }
