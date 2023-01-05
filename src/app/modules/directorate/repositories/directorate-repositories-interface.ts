@@ -6,4 +6,5 @@ export interface DirectorateRepositoryInterface {
   findByUserId(user_id: string): Promise<Directorate>;
   find(): Promise<Directorate[]>;
   findById(id: string): Promise<Directorate>;
+  findByIdShowDetails(id: string): Promise<Directorate>;
 }

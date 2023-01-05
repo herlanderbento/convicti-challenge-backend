@@ -7,5 +7,86 @@
     "contact": {
       "email": "herlanderbento19@gmail.com"
     }
+  },
+  "paths": {
+    "/session": {
+      "post": {
+        "tags": ["Session"],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation fails!"
+          },
+          "404": {
+            "description": "Email or password incorrect!"
+          }
+        }
+      }
+    },
+    "/directorate": {
+      "post": {
+        "tags": ["Directorate"],
+        "summary": "Create a director",
+        "description": "Create a director",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "directorate_name": {
+                    "type": "string"
+                  },
+                  "roles": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Validation fails!"
+          },
+          "400": {
+            "description": "User already exists!"
+          }
+        }
+      }
+    }
   }
 }

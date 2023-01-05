@@ -9,6 +9,8 @@ export class GetAllDirectorsController {
 
     const directorateInfo = await getDirectorsUseCases.execute();
 
+    console.log(directorateInfo);
+
     return response.json(classToPlain(directorateInfo));
   }
 }

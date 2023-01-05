@@ -54,4 +54,15 @@ export class DirectorateRepository implements DirectorateRepositoryInterface {
 
     return await directorateQuery.getMany();
   }
+
+  async findByIdShowDetails(director_id: string): Promise<Directorate> {
+    return await this.repository.findOne({
+      where: {
+        id: director_id,
+      },
+      relations: {
+        units: true,
+      },
+    });
+  }
 }
