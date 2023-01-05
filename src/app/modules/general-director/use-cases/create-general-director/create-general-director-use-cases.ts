@@ -5,6 +5,7 @@ import { AppError } from '@shared/errors/AppError';
 import { CreateGeneralDirectorDtos } from '../../dtos/create-general-director.dtos';
 import { GeneralDirector } from '../../infra/typeorm/entities/general-director';
 import { GeneralDirectorRepository } from '../../infra/typeorm/repositories/general-director-repository';
+import { hash } from 'bcrypt';
 
 @injectable()
 export class CreateGeneralDirectorUseCases {
@@ -30,10 +31,12 @@ export class CreateGeneralDirectorUseCases {
       throw new AppError('General already exists!');
     }
 
+    const passwordHash = await hash(password, 8);
+
     return await this.generalDirectorRepository.create({
       name,
       email,
-      password,
+      password: passwordHash,
     });
   }
 }
