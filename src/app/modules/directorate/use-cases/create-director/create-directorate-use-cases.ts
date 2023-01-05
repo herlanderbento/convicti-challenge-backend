@@ -5,6 +5,7 @@ import { CreateDirectorateDtos } from '../../dtos/create-directorate-dtos';
 import { Directorate } from '../../infra/typeorm/entities/directorate';
 import { DirectorateRepositoryInterface } from '../../repositories/directorate-repositories-interface';
 import { directorateInputSchemaValidate } from '../../validation';
+import { hash } from 'bcrypt';
 
 @injectable()
 export class CreateDirectorateUseCases {
@@ -40,12 +41,14 @@ export class CreateDirectorateUseCases {
       throw new AppError('User already exists!');
     }
 
+    const passwordHash = await hash(password, 8);
+
     return await this.directorateRepository.create({
       name,
       directorate_name,
       roles,
       email,
-      password,
+      password: passwordHash,
     });
   }
 }
