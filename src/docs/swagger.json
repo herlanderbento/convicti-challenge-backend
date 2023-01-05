@@ -253,6 +253,57 @@
           }
         }
       }
+    },
+    "/sales": {
+      "post": {
+        "tags": ["Sales"],
+        "summary": "Create a sales",
+        "description": "Create a sales",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "salesperson_id": {
+                    "type": "string"
+                  },
+                  "unit_id": {
+                    "type": "string"
+                  },
+                  "directorate_id": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "total_amount": {
+                    "type": "number"
+                  },
+                  "date_sale": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Sales"],
+        "summary": "list all sales",
+        "description": "list all sales",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
     }
   }
 }
