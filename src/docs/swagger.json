@@ -86,6 +86,38 @@
             "description": "User already exists!"
           }
         }
+      },
+      "get": {
+        "tags": ["Directorate"],
+        "summary": "list all directors",
+        "description": "list all directors",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/directorate/{id}": {
+      "get": {
+        "tags": ["Directorate"],
+        "summary": "list one director",
+        "description": "list one director",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     }
   }
