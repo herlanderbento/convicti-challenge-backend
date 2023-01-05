@@ -240,19 +240,13 @@
         "responses": {
           "200": {
             "description": "Success"
-          },
-          "400": {
-            "description": "Validation fails!"
-          },
-          "400": {
-            "description": "User already exists!"
           }
         }
       },
       "get": {
-        "tags": ["Directorate"],
-        "summary": "list all directors",
-        "description": "list all directors",
+        "tags": ["Salesperson"],
+        "summary": "list all salesperson",
+        "description": "list all salesperson",
         "responses": {
           "200": {
             "description": "Success"
