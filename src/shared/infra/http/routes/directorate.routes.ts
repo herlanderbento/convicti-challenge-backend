@@ -17,7 +17,11 @@ directorateRouters.get(
   ensureGeneralDirector,
   getAllDirectorsController.handle
 );
-directorateRouters.get('/:id', getDirectorController.handle);
+directorateRouters.get(
+  '/:id',
+  ensureAuthenticated,
+  getDirectorController.handle
+);
 directorateRouters.post('/', createDirectorateController.handle);
 
 export { directorateRouters };

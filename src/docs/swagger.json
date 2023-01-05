@@ -49,6 +49,7 @@
         "tags": ["Directorate"],
         "summary": "Create a director",
         "description": "Create a director",
+
         "requestBody": {
           "content": {
             "application/json": {
@@ -91,6 +92,7 @@
         "tags": ["Directorate"],
         "summary": "list all directors",
         "description": "list all directors",
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
             "description": "Success"
@@ -113,6 +115,8 @@
             }
           }
         ],
+        "security": [{ "bearerAuth": [] }],
+
         "responses": {
           "200": {
             "description": "Success"
@@ -163,6 +167,8 @@
         "tags": ["Units"],
         "summary": "Create a unit",
         "description": "Create a unit",
+        "security": [{ "bearerAuth": [] }],
+
         "requestBody": {
           "content": {
             "application/json": {
@@ -199,6 +205,8 @@
         "tags": ["Units"],
         "summary": "list all units",
         "description": "list all units",
+        "security": [{ "bearerAuth": [] }],
+
         "responses": {
           "200": {
             "description": "Success"
@@ -247,6 +255,8 @@
         "tags": ["Salesperson"],
         "summary": "list all salesperson",
         "description": "list all salesperson",
+        "security": [{ "bearerAuth": [] }],
+
         "responses": {
           "200": {
             "description": "Success"
@@ -259,6 +269,8 @@
         "tags": ["Sales"],
         "summary": "Create a sales",
         "description": "Create a sales",
+        "security": [{ "bearerAuth": [] }],
+
         "requestBody": {
           "content": {
             "application/json": {
@@ -298,6 +310,7 @@
         "tags": ["Sales"],
         "summary": "list all sales",
         "description": "list all sales",
+        "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
             "description": "Success"
